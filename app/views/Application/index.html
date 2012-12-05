@@ -1,0 +1,67 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+
+<div id="participants">
+    Ingenting lastet.
+</div>
+    <div>
+        <div class="camera"></div>
+        <div class="join-box">
+            <label>Navn</label><input type="text" name="name" id="p_name"/><br>
+            <label>Høyde (passordfelt)</label><input type="password" name="height" id="p_height"/><br>
+            <label>Vekt (passordfelt)</label><input type="password" name="weight" id="p_weight"/><br><br>
+            <input type="submit" value="Legg til" class="addParticipantBtn"/><br>
+        </div>
+
+    </div>
+
+<script>
+
+$(".camera").webcam({
+    width: 320,
+    height: 240,
+    mode: "callback",
+    swffile: "/public/javascripts/jscam_canvas_only.swf",
+    onTick: function() {},
+    onSave: function() {},
+    onCapture: function() {},
+    debug: function() {},
+    onLoad: function() {}
+});
+
+var addParticipant = function() {
+    $.post("@{Application.addParticipant()}?name=" + $("#p_name").val() 
+        + "&height="+ $("#p_height").val() 
+        + "&weight="+ $("#p_weight").val()
+    );
+};
+
+var addBeer = function() {
+    console.log("posting some beer");
+    $.post("@{Application.addBeer()}?participantId=" + this.id);
+};
+
+var poll = function() {
+    console.log("Getting participants");
+    var table = "<table><th>Plassering</th><th>javabiner</th>";
+    $.get("@{Application.participants()}", function(result){
+        for (var i = 0; i < result.length; i++) {
+            var plassering = i +1 
+            table += "<tr>"
+            table += "<td>" + plassering +".</td>";
+            table += "<td>" + result[i].name + "</td>";
+            table += "<td><div class='addBeerBtn' id='"+ result[i].id + "'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++</td>";
+            table += "</tr>"
+        };
+        table +="</table>";
+        $('#participants')[0].innerHTML = table;
+        $(".addBeerBtn").click(addBeer);
+    });
+};
+
+$(document).ready(function(){
+    $(".addParticipantBtn").click(addParticipant);
+    setInterval(poll,1000); 
+});
+</script>

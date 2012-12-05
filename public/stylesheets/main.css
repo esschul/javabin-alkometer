@@ -1,0 +1,80 @@
+body {
+	margin:20px 0px; padding:0px;
+	text-align:center;
+}
+
+
+.addBeerBtn{
+	background-image: url("/public/images/beer-icon.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding:10px ;
+	cursor: pointer;
+}
+
+.camera {
+	float:right;
+	width:340px;
+	border-radius: 1em;
+	background-image: url("/public/images/yellow-beer-texture.jpg");
+	background-size: 300%;
+	padding:20px;
+	border:3px dashed #333;
+	margin-right:30px;
+	margin-bottom: 10px;
+}
+
+.join-box {
+	float:right;
+	background-image: url("/public/images/yellow-beer-texture.jpg");
+	background-size: 300%;
+	border-radius: 1em;
+	border:3px dashed #333;
+	width:380px;
+	margin-right:30px;
+}
+
+.addParticipantBtn {
+	margin-bottom: 20px;
+}
+
+#participants {
+	float:left;
+	background-image: url("/public/images/yellow-beer-texture.jpg");
+	background-size: 300%;
+	margin-left:30px;
+	width:30%;
+	height:700px;
+	border:3px dashed #333;
+	border-radius: 1em;
+}
+
+label {
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+	padding-right:10px;
+}
+
+label:first-child {
+		padding-top: 20px;
+}
+
+table td {
+	font-size:30px;
+	width:30%;
+}
+
+th {
+	padding-top:10px;
+}
+
+p {
+	text-decoration: none;
+	padding-top:10px;
+	display: inline-block;
+}
+
+ul {
+	list-style: none;
+}
